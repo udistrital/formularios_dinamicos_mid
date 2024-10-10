@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { FormularioDinamicoController } from './controllers/formulario-dinamico/formulario-dinamico.controller';
-import { HealthController } from './controllers/health/health.controller';
+import { FormularioDinamicoController } from './formulario-dinamico/formulario-dinamico.controller';
 
-import { ServicesModule } from './services/services.module';
+import { FormularioDinamicoModule } from './formulario-dinamico/formulario-dinamico.module';
 
 @Module({
-  imports: [ServicesModule],
-  controllers: [FormularioDinamicoController,HealthController],
+  imports: [FormularioDinamicoModule],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}

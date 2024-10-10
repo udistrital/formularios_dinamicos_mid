@@ -1,5 +1,6 @@
 import { Controller, Post, Body} from '@nestjs/common';
-import {FormularioDinamicoService}from '../../services/formulario-dinamico/formulario-dinamico.service'
+import {FormularioDinamicoService}from './formulario-dinamico.service'
+
 @Controller('formulario-dinamico')
 export class FormularioDinamicoController {
  constructor(private readonly FormularioDinamicoService: FormularioDinamicoService){}
