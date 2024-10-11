@@ -8,16 +8,14 @@ export class FormularioDinamicoController {
     @Post()
     traerFormularioDinamico(@Body() data:any){
         
-        console.log(data)
+        //console.log(data)
         let dataService = this.FormularioDinamicoService.procesarFormularioDinamico(data)
         return{
             Success: true,
             Status: 200,
             Messaje: 'data formuario dinamico recibido',
-            Data: {
-                id:123456789,
-                valor: dataService
-            }
+            agrupados: dataService
+            
         };
     }
 }
