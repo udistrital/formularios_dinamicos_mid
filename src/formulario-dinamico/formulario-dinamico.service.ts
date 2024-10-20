@@ -13,28 +13,33 @@ export class FormularioDinamicoService {
     private clasificarJson(data: any): any {
         const agrupadoPorEndpoint: any = {};
         const desagrupados: any = {}
-        data.campo.forEach((campo: any) => {
-            if(campo.agrupado===false){
-                desagrupados[campo.endpoint]=[];
-                desagrupados[campo.endpoint].push(campo);
-            }else{
-                if (agrupadoPorEndpoint[campo.endpoint]===agrupadoPorEndpoint[campo.servicio] ) {
-                    agrupadoPorEndpoint[campo.endpoint] = {
-                        endpoint: campo.endpoint,
-                        servicio: campo.servicio,
+        data.campos.forEach((campos: any) => {
+            if(campos.agrupado===false){
+                desagrupados[campos.endpoint]=[];
+                desagrupados[campos.endpoint].push(campos);
+            }  else {
+                // Verifica si ya existe el grupo por endpoint y servicio
+                if (!agrupadoPorEndpoint[campos.endpoint]) {
+                    agrupadoPorEndpoint[campos.endpoint] = {};
+                }
+                
+                if (!agrupadoPorEndpoint[campos.endpoint][campos.servicio]) {
+                    agrupadoPorEndpoint[campos.endpoint][campos.servicio] = {
+                        endpoint: campos.endpoint,
+                        servicio: campos.servicio,
                         items: []
                     };
                 }
-        
-                const { endpoint, servicio, ...camposRestantes } = campo;
-                agrupadoPorEndpoint[campo.endpoint].items.push({
-                    ...camposRestantes,
-                });
+    
+                // Extraer endpoint y servicio, y agrupar el resto de los campos
+                const { endpoint, servicio, ...camposRestantes } = campos;
+                agrupadoPorEndpoint[campos.endpoint][campos.servicio].items.push(camposRestantes);
             }
         });
+    
         return {
             agrupados: agrupadoPorEndpoint,
             desagrupados: desagrupados
-        } ;
+        };
     }
 }

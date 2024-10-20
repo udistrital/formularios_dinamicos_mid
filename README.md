@@ -20,7 +20,7 @@ PORT=[puerto de ejecucion]
 go get github.com/udistrital/formularios_dinamicos_mid.git
 
 # 2. Moverse a la carpeta del repositorio
-cd $GOPATH/src/github.com/udistrital/inscripcion_crud
+cd $GOPATH/src/github.com/udistrital/formularios_dinamicos_mid
 
 # 3. Moverse a la rama **develop**
 git pull origin develop && git checkout develop
